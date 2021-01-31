@@ -116,6 +116,9 @@ object FileWorker {
         return result;
     }
 
+    //TODO create read an write for lines : <day-ofWeek-ofYear>, milisecondsSpend>
+
+
 
     /**
      * Deletes all entries
@@ -128,5 +131,4 @@ object FileWorker {
     private fun throwUninstantiateError() {
         throw Error("tried to use the singleton FileWorker without instantiating it.")
     }
-
 }
