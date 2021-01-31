@@ -1,14 +1,14 @@
 package com.example.timekeeper
 
-import androidx.test.platform.app.InstrumentationRegistry
+import android.content.Intent
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.example.timekeeper.internal.FileWorker
 import com.example.timekeeper.internal.TimePoint
-
+import org.junit.Assert.*
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -17,6 +17,8 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
@@ -24,11 +26,4 @@ class ExampleInstrumentedTest {
         assertEquals("com.example.timekeeper", appContext.packageName)
     }
 
-    @Test
-    fun testCSVReader(){
-
-        FileWorker.addTimePoint(TimePoint("testing_read_and_write",  1611910435903L))
-        val timePoints = FileWorker.getListOfTimePointsSince(1)
-        assertEquals(timePoints[0].TimeInMiliseconds, 1611910435903)
-    }
 }

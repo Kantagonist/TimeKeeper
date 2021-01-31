@@ -25,7 +25,7 @@ class TimePoint (id : String, timeInMiliseconds : Long){
         ActualDate = Date(TimeInMiliseconds)
     }
 
-    fun toString() : String{
+    override fun toString() : String{
         return "TimePoint: [ $Id, $TimeInMiliseconds ] : $ActualDate"
     }
 }

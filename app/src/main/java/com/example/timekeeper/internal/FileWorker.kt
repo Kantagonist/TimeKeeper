@@ -37,7 +37,7 @@ object FileWorker {
 
         //instatiate paths
         Model = model
-        PathToAppDir = Model!!.AppMainActivity.applicationContext.filesDir.absolutePath
+        PathToAppDir = Model!!.AppContext.filesDir.absolutePath
 
         //checks if dir is set up
         var workingDir = File(PathToAppDir + "/" + UsageDir)
@@ -82,7 +82,6 @@ object FileWorker {
      * Returns a list of time Points which where written from the time of calling the method down the given number of days.
      * Example If you input "5" as an argument, you get all time Points from the last 5 days.
      */
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getListOfTimePointsSince(days : Int) : MutableList<TimePoint>{
         if(Model == null) throwUninstantiateError()
 
@@ -104,15 +103,26 @@ object FileWorker {
             val entries : List<String> = line.split(",")
             var id : String = entries[0]
             var milSecs : Long = entries[1].toLong()
-            if(dateNow >= milSecs){ //TimePoint is within range
-                result.add(TimePoint(id, milSecs))
+            if(dateNow <= milSecs){ //TimePoint is within range
+                val point = TimePoint(id, milSecs)
+                result.add(point)
+                Log.d("READING TIME POINTS", "read ${point.toString()}")
             }else{
                 break;
             }
-            reader.readLine()
+            line = reader.readLine()
         }
         reader.close()
         return result;
+    }
+
+
+    /**
+     * Deletes all entries
+     */
+    public fun flushStorage(){
+        var timePointCSV = File(PathToAppDir + "/" +  UsageDir + "/" + TimePointCsv)
+        var workShiftCSV = File(PathToAppDir + "/" + UsageDir + "/" + WorkShiftCsv)
     }
 
     private fun throwUninstantiateError() {
