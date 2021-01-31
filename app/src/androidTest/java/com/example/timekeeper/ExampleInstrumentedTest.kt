@@ -2,6 +2,7 @@ package com.example.timekeeper
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.timekeeper.internal.FileWorker
 import com.example.timekeeper.internal.TimePoint
 
 import org.junit.Test
@@ -25,8 +26,9 @@ class ExampleInstrumentedTest {
 
     @Test
     fun testCSVReader(){
-        val timePoints = TimePoint.getListOfTimePointsSince(1)
+
+        FileWorker.addTimePoint(TimePoint("testing_read_and_write",  1611910435903L))
+        val timePoints = FileWorker.getListOfTimePointsSince(1)
         assertEquals(timePoints[0].TimeInMiliseconds, 1611910435903)
-        assertEquals(timePoints[0].Id, "hello")
     }
 }

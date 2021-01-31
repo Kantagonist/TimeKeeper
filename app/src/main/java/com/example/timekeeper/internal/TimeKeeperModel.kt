@@ -1,13 +1,17 @@
 package com.example.timekeeper.internal
 
+import androidx.appcompat.app.AppCompatActivity
+import com.example.timekeeper.MainActivity
+
 /**
  * A singleton, which holds the variables of the program.
  */
-object TimeKeeperModel{
+class TimeKeeperModel(activity: MainActivity){
     var TimePoints : List<TimePoint>
-    val CSVPath : String = "/Users/henrikhatje/AndroidStudioProjects/TimeKeeper/app/src/main/java/com/example/timekeeper/internal/timePoints.csv"
+    val AppMainActivity : MainActivity
 
     init {
-        TimePoints = mutableListOf()
+        AppMainActivity = activity
+        TimePoints = mutableListOf<TimePoint>()
     }
 }
