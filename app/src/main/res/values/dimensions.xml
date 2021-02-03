@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="genericTextSize">24sp</dimen>
+    <dimen name="clockTextSize">10sp</dimen>
+    <dimen name="clockHeaderTextSize">6sp</dimen>
+</resources>

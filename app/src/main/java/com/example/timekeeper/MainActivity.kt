@@ -1,13 +1,12 @@
 package com.example.timekeeper
 
+import android.app.ActionBar
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
-import androidx.annotation.RequiresApi
+import android.view.Gravity
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.timekeeper.internal.FileWorker
 import com.example.timekeeper.internal.TimeKeeperModel
 import com.example.timekeeper.internal.TimePoint
@@ -17,6 +16,13 @@ class MainActivity : AppCompatActivity() {
 
     var Model : TimeKeeperModel? = null
 
+    val clockNames: List<String> = listOf<String>(
+            "Today: ",
+            "This Week: ",
+            "This Month: "
+    )
+
+    var clocks: MutableList<TextClock> = mutableListOf<TextClock>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +33,26 @@ class MainActivity : AppCompatActivity() {
         PlayButton.setBackgroundColor(Color.GREEN)
         PlayButton.setOnClickListener(){
             buttonClicked()
+        }
+
+        //sets up the clocks
+        val clockListView: LinearLayout = findViewById(R.id.clockList)
+        for(clockName in clockNames){
+            //label
+            val newClock : TextView = TextView(applicationContext)
+            newClock.text = clockName
+            newClock.setTextSize(resources.getDimension(R.dimen.clockHeaderTextSize))
+            newClock.setTextColor(ContextCompat.getColor(applicationContext, R.color.black))
+            newClock.setLayoutParams(ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.MATCH_PARENT))
+            clockListView.addView(newClock)
+
+            //actual clock
+            val newClockRepresentation : TextClock = TextClock(applicationContext)
+            clocks.add(newClockRepresentation)
+            newClockRepresentation.setLayoutParams(ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.MATCH_PARENT))
+            newClockRepresentation.setTextSize(resources.getDimension(R.dimen.clockTextSize))
+            newClockRepresentation.gravity
+            clockListView.addView(newClockRepresentation)
         }
     }
 

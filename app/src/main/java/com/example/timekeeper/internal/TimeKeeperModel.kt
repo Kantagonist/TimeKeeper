@@ -14,6 +14,7 @@ class TimeKeeperModel(activity: MainActivity){
     val AppMainActivity : MainActivity
     val AppContext : Context
     var color = Color.GREEN
+    var newestTimeSlot = 0
 
     init {
         AppMainActivity = activity
