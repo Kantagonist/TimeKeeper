@@ -11,11 +11,12 @@ import java.util.Date
 /**
  * A data model of a recorded point in time.
  */
-class TimePoint (id : String, timeInMiliseconds : Long){
+class TimePoint (id : String, timeInMiliseconds : Long, lengthInMiliseconds : Long){
 
-    val TimeInMiliseconds : Long
-    val Id : String
-    val ActualDate : Date
+    val TimeInMiliseconds : Long //The point in time when this Point was created
+    val Id : String //its id
+    val ActualDate : Date //the translated date from the given miliseconds timestamp
+    val LengthInMiliseconds : Long //how long the clocks were active
 
 
     init {
@@ -23,9 +24,10 @@ class TimePoint (id : String, timeInMiliseconds : Long){
         TimeInMiliseconds = timeInMiliseconds
         Id = id
         ActualDate = Date(TimeInMiliseconds)
+        LengthInMiliseconds = lengthInMiliseconds
     }
 
     override fun toString() : String{
-        return "TimePoint: [ $Id, $TimeInMiliseconds ] : $ActualDate"
+        return "TimePoint: [ $Id, $TimeInMiliseconds, length: $LengthInMiliseconds ] : $ActualDate"
     }
 }

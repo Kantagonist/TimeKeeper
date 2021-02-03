@@ -61,6 +61,8 @@ object FileWorker {
             fileWriter.append(point.Id)
             fileWriter.append(',')
             fileWriter.append("${point.TimeInMiliseconds}")
+            fileWriter.append(',')
+            fileWriter.append("${point.LengthInMiliseconds}")
             fileWriter.append("\n")
             Log.d("FILE WRITING", " added ${point.toString()} ")
         } catch (e: Exception) {
@@ -103,8 +105,9 @@ object FileWorker {
             val entries : List<String> = line.split(",")
             var id : String = entries[0]
             var milSecs : Long = entries[1].toLong()
+            var LengthMilSecs : Long = entries[2].toLong()
             if(dateNow <= milSecs){ //TimePoint is within range
-                val point = TimePoint(id, milSecs)
+                val point = TimePoint(id, milSecs, LengthMilSecs)
                 result.add(point)
                 Log.d("READING TIME POINTS", "read ${point.toString()}")
             }else{
@@ -115,10 +118,6 @@ object FileWorker {
         reader.close()
         return result;
     }
-
-    //TODO create read an write for lines : <day-ofWeek-ofYear>, milisecondsSpend>
-
-
 
     /**
      * Deletes all entries
