@@ -2,5 +2,5 @@
 <resources>
     <dimen name="genericTextSize">24sp</dimen>
     <dimen name="clockTextSize">10sp</dimen>
-    <dimen name="clockHeaderTextSize">6sp</dimen>
+    <dimen name="clockHeaderTextSize">8sp</dimen>
 </resources>

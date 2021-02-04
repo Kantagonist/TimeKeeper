@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             clocks.add(newClockRepresentation)
             newClockRepresentation.setLayoutParams(ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT))
             newClockRepresentation.setTextSize(resources.getDimension(R.dimen.clockTextSize))
-            newClockRepresentation.gravity = Gravity.CENTER_VERTICAL
+            newClockRepresentation.gravity = Gravity.CENTER_HORIZONTAL
             clockListView.addView(newClockRepresentation)
         }
     }
